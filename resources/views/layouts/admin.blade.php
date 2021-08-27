@@ -130,6 +130,14 @@ font-size: 16px;"> First Login : {{Auth::user()->created_at->diffForHumans()}} &
     <script src="{{asset('/js/admin/morris/morris.js')}}"></script>
       <!-- CUSTOM SCRIPTS -->
     <script src="{{asset('/js/admin/custom.js')}}"></script>
+
+    <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
+    <script>
+            var ckview = document.getElementById("ckview");
+            CKEDITOR.replace(ckview,{
+                language:'en-gb'
+            });
+    </script>
     
 </body>
 </html>

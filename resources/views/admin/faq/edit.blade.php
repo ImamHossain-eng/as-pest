@@ -13,11 +13,12 @@
         <div class="card-body">
             {{Form::open(['route' => ['admin.faq_update', $faq->id], 'method'=> 'POST'])}}
             {{method_field('PUT')}}
-                <div class="form-group">
+                <div class="form-group input-group input-group-lg">
+                    <span class="input-group-addon">Question</span>
                     <input type="text" name="question" value="{{$faq->question}}" class="form-control" placeholder="Enter the Question">
                 </div><br>
                 <div class="form-group">
-                    <textarea name="ans" id="" class="form-control" placeholder="Enter the Answer">{{$faq->ans}}</textarea>
+                    <textarea name="ans" id="ckview" class="form-control" placeholder="Enter the Answer">{{$faq->ans}}</textarea>
                 </div><br>
                 <button class="btn btn-primary">
                     Save

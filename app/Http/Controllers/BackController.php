@@ -9,6 +9,9 @@ use App\Models\Faq;
 
 class BackController extends Controller
 {
+    public function admin_home() {
+        return view('admin.dashboard');
+    }
 
     public function faq_create(){
         return view('admin.faq.create');

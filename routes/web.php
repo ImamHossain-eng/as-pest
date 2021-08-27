@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BackController;
+use App\Http\Controllers\PagesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,7 @@ use App\Http\Controllers\BackController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [PagesController::class, 'index'])->name('homepage');
 
 Auth::routes();
 
@@ -26,13 +25,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    })->name('admin.home');
-
-    Route::get('/faq/create', function(){
-        return 'faq';
-    });
+    Route::get('/', [BackController::class, 'admin_home'])->name('admin.home');
 
     //FAQ CRUD
     Route::get('/faq/create', [BackController::class, 'faq_create'])->name('admin.faq_create');

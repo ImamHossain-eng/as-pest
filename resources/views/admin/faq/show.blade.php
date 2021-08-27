@@ -19,9 +19,9 @@
                     </p>  
                 </div>
             </div>                
-            <p style="background-color: #d4c7c7;padding:1em;box-shadow: 2px 5px 2px #636161;"><strong>Answer:</strong>
-                {{$faq->ans}}
-            </p>
+            <div style="background-color: #d4c7c7;padding:1em;box-shadow: 2px 5px 2px #636161;"><strong>Answer:</strong>
+                {!!$faq->ans!!}
+            </div>
             <br>
             <div> Admin Operation:
                 <a href="/admin/faq/{{$faq->id}}/edit" class="btn btn-success">
