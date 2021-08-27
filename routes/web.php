@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BackController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,25 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('user');
 
-Route::get('/admin', function () {
-    return view('admin.dashboard');
-})->middleware('admin')->name('admin.home');
+
+
+
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
+    Route::get('/', function () {
+        return view('admin.dashboard');
+    })->name('admin.home');
+
+    Route::get('/faq/create', function(){
+        return 'faq';
+    });
+
+    //FAQ CRUD
+    Route::get('/faq/create', [BackController::class, 'faq_create'])->name('admin.faq_create');
+    Route::get('/faq', [BackController::class, 'faq_index'])->name('admin.faq_index');
+    Route::post('/faq', [BackController::class, 'faq_store'])->name('admin.faq_store');
+    Route::delete('/faq/{id}', [BackController::class, 'faq_destroy'])->name('admin.faq_destroy');
+    Route::get('/faq/{id}', [BackController::class, 'faq_show'])->name('admin.faq_show');
+    Route::get('/faq/{id}/edit', [BackController::class, 'faq_edit'])->name('admin.faq_edit');
+    Route::put('/faq/{id}', [BackController::class, 'faq_update'])->name('admin.faq_update');
+
+});

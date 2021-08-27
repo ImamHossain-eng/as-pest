@@ -23,7 +23,6 @@ class User
             }else{
                 return $next($request);
             }
-
         }else{
             return redirect()->back()->with('error', 'You are not authenticated user. Access Denied');
 
