@@ -1,6 +1,17 @@
 @extends('layouts.admin')
 
 @section('content')
+<head>
+   <style>
+       .pagination li a{
+			font-family: tahoma;
+			padding-left:30px;
+			padding-right:10px;
+			text-align: center;
+			margin:auto;
+		}
+   </style>
+</head>
 <body>
     <div class="table-responsive">
         <table class="table table-striped">
@@ -44,6 +55,7 @@
                 @endforelse
             </tbody>
         </table>
+        <center>{{$faqs->links()}}</center>
     </div>
 </body>
 @endsection

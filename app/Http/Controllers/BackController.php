@@ -17,7 +17,7 @@ class BackController extends Controller
         return view('admin.faq.create');
     }
     public function faq_index(){
-        $faqs = Faq::all();
+        $faqs = Faq::latest()->paginate(10);
         return view('admin.faq.index', compact('faqs'));
     }
     public function faq_store(Request $request){
