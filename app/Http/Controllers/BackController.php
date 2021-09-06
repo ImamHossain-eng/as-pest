@@ -51,4 +51,7 @@ class BackController extends Controller
         $faq->save();
         return redirect()->route('admin.faq_index')->with('warning', 'Successfully Updated');
     }
+    public function member_create(){
+        return view('admin.member.create');
+    }
 }

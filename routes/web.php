@@ -36,4 +36,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/faq/{id}/edit', [BackController::class, 'faq_edit'])->name('admin.faq_edit');
     Route::put('/faq/{id}', [BackController::class, 'faq_update'])->name('admin.faq_update');
 
+    //Member CRUD
+    Route::get('/member/create', [BackController::class, 'member_create'])->name('admin.member_create');
+
 });

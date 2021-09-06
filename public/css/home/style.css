@@ -973,6 +973,7 @@ a:focus {
 .team .team-text p {
     margin: 0;
     color: #ffffff;
+    text-align: center;
 }
 
 .team .team-item:hover .team-text {

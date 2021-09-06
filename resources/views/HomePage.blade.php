@@ -10,7 +10,7 @@
                     <div class="col-lg-4 col-md-12">
                         <div class="logo">
                             <a href="/">
-                                <h1>AS Pest Control</h1>
+                                <h1>A.S Pest Control</h1>
                                 <!-- <img src="img/logo.jpg" alt="Logo"> -->
                             </a>
                         </div>
@@ -180,11 +180,6 @@
         <div class="about wow fadeInUp" data-wow-delay="0.1s">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-lg-5 col-md-6">
-                        <div class="about-img">
-                            <img src="{{asset('images/pest.jpg')}}" alt="Image">
-                        </div>
-                    </div>
                     <div class="col-lg-7 col-md-6">
                         <div class="section-header text-left">
                             <p>Welcome to AS Pest Control</p>
@@ -200,6 +195,12 @@
                             <a class="btn" href="#">Learn More</a>
                         </div>
                     </div>
+                    <div class="col-lg-5 col-md-6">
+                        <div class="about-img">
+                            <img src="{{asset('images/pest.jpg')}}" alt="Image">
+                        </div>
+                    </div>
+                   
                 </div>
             </div>
         </div>
