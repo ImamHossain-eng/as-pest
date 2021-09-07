@@ -19,6 +19,11 @@
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
    <link rel="stylesheet" href="{{asset('css/admin/style.css')}}">
+   <style>
+       .fa{
+           font-size: 25px;
+       }
+   </style>
   
 </head>
 <body>
@@ -74,7 +79,7 @@ font-size: 16px;"> First Login : {{Auth::user()->created_at->diffForHumans()}} &
                     
                     <li>
                         <a href="#" class="{{ Request::is('admin/member*') ? 'active-menu' : '' }}">
-                            <i class="fa  fa-question-circle-o fa-3x"></i> 
+                            <i class="fa  fa-user-o"></i> 
                             Member List <span class="fa arrow"></span>
                             <ul class="nav nav-second-level">
                                 <li>

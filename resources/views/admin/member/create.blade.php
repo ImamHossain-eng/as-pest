@@ -1,14 +1,21 @@
 @extends('layouts.admin')
 @section('content')
+<head>
+    <style>
+        input{
+            width:100%;
+        }
+    </style>
+</head>
 <body>
     <div class="card">
         <div class="card-header">
             <h3 class="heading">Adding New Team Member</h3>
         </div>
         <div class="card-body">
-            {{Form::open(['route' => 'admin.faq_store', 'method'=> 'POST'])}}
+            {{Form::open(['route' => 'admin.member_store', 'method'=> 'POST', 'enctype'=>'multipart/form-data'])}}
                 <div class="form-group input-group input-group-lg">
-                    <span class="input-group-addon">Name</span>
+                    <span class="input-group-addon ab">Name</span>
                     <input type="text" name="name" class="form-control" placeholder="Enter Name of the Employee">
                 </div><br>
 
@@ -20,7 +27,7 @@
                 <div class="form-group input-group input-group-lg">
                     <span class="input-group-addon">Profile Picture</span>
                     <input type="file" name="image" class="form-control">
-                </div>
+                </div><br>
 
 
                 <div class="form-group input-group input-group-lg">

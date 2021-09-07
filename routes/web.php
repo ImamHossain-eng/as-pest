@@ -37,6 +37,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::put('/faq/{id}', [BackController::class, 'faq_update'])->name('admin.faq_update');
 
     //Member CRUD
+    Route::get('/member', [BackController::class, 'member_index'])->name('admin.member_index');
     Route::get('/member/create', [BackController::class, 'member_create'])->name('admin.member_create');
+    Route::post('/member', [BackController::class, 'member_store'])->name('admin.member_store');
+    Route::delete('/member/{id}', [BackController::class, 'member_destroy'])->name('admin.member_destroy');
+    
 
 });
