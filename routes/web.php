@@ -41,6 +41,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/member/create', [BackController::class, 'member_create'])->name('admin.member_create');
     Route::post('/member', [BackController::class, 'member_store'])->name('admin.member_store');
     Route::delete('/member/{id}', [BackController::class, 'member_destroy'])->name('admin.member_destroy');
-    
+    Route::get('/member/{id}/edit', [BackController::class, 'member_edit'])->name('admin.member_edit');
+    Route::put('/member/{id}', [BackController::class, 'member_update'])->name('admin.member_update');
 
 });

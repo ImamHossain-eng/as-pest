@@ -9,6 +9,7 @@
                     <th>Name</th>
                     <th>Designation</th>
                     <th>Inserted</th>
+                    <th>Updated</th>
                     <th>Option</th>
                 </tr>
             </thead>
@@ -19,7 +20,7 @@
                     <td> {{$member->name}} </td>
                     <td> {{$member->designation}} </td>
                     <td> {{ date('F d, Y', strtotime($member->created_at))}} at {{ date('g:ia', strtotime($member->created_at))}} </td>
-                    
+                    <td> {{ date('F d, Y', strtotime($member->updated_at))}} at {{ date('g:ia', strtotime($member->updated_at))}} </td>                    
                     <td>
                         <a href="/admin/member/{{$member->id}}" class="btn btn-primary">
                             <i class="fa fa-eye"></i>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use Image;
+use File;
 
 use App\Models\Faq;
 use App\Models\Member;
@@ -94,6 +95,42 @@ class BackController extends Controller
             File::delete(public_path('/images/staffs/'.$oldImg));
         }
         $member->delete();
+        return redirect()->route('admin.member_index');
+    }
+    public function member_edit($id){
+        $member = Member::find($id);
+        return view('admin.member.edit', compact('member'));
+    }
+    public function member_update(Request $request, $id){
+        $this->validate($request, [
+            'name' => 'required',
+            'designation' => 'required'
+        ]);
+
+        $member = Member::find($id);
+        $oldImg = $member->image;
+
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $fileName = time().'.'.$extension;
+            Image::make($file)->resize(220, 300)->save(public_path('/images/staffs/'.$fileName));
+            if($oldImg != 'no_image.png'){
+                File::delete(public_path('/images/staffs/'.$oldImg));
+            }
+        }
+        else{
+            $fileName = $oldImg;
+        }
+        
+        $member->name = $request->input('name');
+        $member->designation = $request->input('designation');
+        $member->fb = $request->input('fb');
+        $member->twitter = $request->input('twitter');
+        $member->linkedin = $request->input('linkedin');
+        $member->instagram = $request->input('instagram');
+        $member->image = $fileName;
+        $member->save();
         return redirect()->route('admin.member_index');
     }
 }
