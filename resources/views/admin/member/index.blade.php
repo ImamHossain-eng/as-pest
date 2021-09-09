@@ -30,7 +30,7 @@
                         </a>
 
                         {{Form::open(['route' => ['admin.member_destroy', $member->id], 'method' => 'DELETE', 'style'=>'display:inline;'])}}
-                            <button class="btn btn-danger">
+                            <button class="btn btn-danger" style="display:inline;">
                                 <i class="fa fa-trash"></i>
                             </button>
                         {{Form::close()}}

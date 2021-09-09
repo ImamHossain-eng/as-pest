@@ -133,4 +133,8 @@ class BackController extends Controller
         $member->save();
         return redirect()->route('admin.member_index');
     }
+    public function member_show($id){
+        $member = Member::find($id);
+        return view('admin.member.show', compact('member'));
+    }
 }

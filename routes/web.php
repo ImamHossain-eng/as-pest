@@ -43,5 +43,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::delete('/member/{id}', [BackController::class, 'member_destroy'])->name('admin.member_destroy');
     Route::get('/member/{id}/edit', [BackController::class, 'member_edit'])->name('admin.member_edit');
     Route::put('/member/{id}', [BackController::class, 'member_update'])->name('admin.member_update');
+    Route::get('/member/{id}', [BackController::class, 'member_show'])->name('admin.member_show');
 
 });

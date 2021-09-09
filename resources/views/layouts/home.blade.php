@@ -22,6 +22,7 @@
     <!-- Template Stylesheet -->
     <link href="{{asset('css/home/style.css')}}" rel="stylesheet">
     <title>A.S Pest Control</title>
+    
 
 </head>
 <body>
