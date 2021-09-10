@@ -6,7 +6,7 @@
           
       
           <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-8">
               <div class="card mb-4">
                 <div class="card-body text-center">
                   <img src="{{asset('images/staffs/'.$member->image)}}" alt="avatar" class="rounded-circle img-fluid" style="width: 20%;">
@@ -49,19 +49,21 @@
               </div>
             </div>
             
-            <div class="row">
-                <div class="col-md-4" style="margin-left:1em;">
-                    <strong><i class="fa fa-clock-o"></i> Created At:</strong>
-                    {{$member->created_at->diffForHumans()}}
-                </div>
-                <div class="col-md-4" style="margin-left:1em;">
-                    <strong><i class="fa fa-clock-o"></i> Updated At:</strong>
-                    {{$member->updated_at->diffForHumans()}}
-                </div>
-            </div>
+            
 
             </div>
           </div>
+
+          <div class="row">
+            <div class="col-md-4" style="margin-left:1em;">
+                <strong><i class="fa fa-clock-o"></i> Created At:</strong>
+                {{$member->created_at->diffForHumans()}}
+            </div>
+            <div class="col-md-4" style="margin-left:1em;">
+                <strong><i class="fa fa-clock-o"></i> Updated At:</strong>
+                {{$member->updated_at->diffForHumans()}}
+            </div>
+        </div>
         </div>
       </section>
 </body>

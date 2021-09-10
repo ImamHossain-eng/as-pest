@@ -129,9 +129,8 @@ font-size: 16px;"> First Login : {{Auth::user()->created_at->diffForHumans()}} &
         </nav>  
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
-            @yield('content')           
-                
-                 
+            @include('parts.message')
+            @yield('content')              
               
 
               

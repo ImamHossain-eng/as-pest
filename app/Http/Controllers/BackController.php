@@ -26,10 +26,17 @@ class BackController extends Controller
     public function faq_store(Request $request){
         $this->validate($request, [
             'question' => 'required',
-            'ans' => 'required'
+            'ans' => 'required',
+            'side' => 'required'
         ]);
-        Faq::create($request->all());
-        return redirect()->route('admin.faq_index')->with('success', 'Successfully Inserted');
+        $side = $request->input('side');
+        if($side != 'null'){
+            Faq::create($request->all());
+            return redirect()->route('admin.faq_index')->with('success', 'Successfully Inserted');
+        }else{
+            return redirect()->route('admin.faq_create')->with('error', 'Please Select left or right side');
+        }
+        
     }
     public function faq_destroy($id){
         Faq::find($id)->delete();
@@ -48,9 +55,19 @@ class BackController extends Controller
             'question' => 'required',
             'ans' => 'required'
         ]);
+        //validate side option
         $faq = Faq::find($id);
+        $newSide = $request->input('side');
+        $oldSide = $faq->side;
+
+        if($newSide != 'null'){
+            $side = $newSide;
+        }else{
+            $side = $oldSide;
+        }        
         $faq->question = $request->input('question');
         $faq->ans = $request->input('ans');
+        $faq->side = $side;
         $faq->save();
         return redirect()->route('admin.faq_index')->with('warning', 'Successfully Updated');
     }

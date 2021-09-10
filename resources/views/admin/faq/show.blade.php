@@ -10,16 +10,28 @@
             <div class="row">
                 <div class="col-md-6">
                     <p class="card-subtitle">
-                        <strong><i class="fa fa-clock-o"></i> Created at:</strong> {{ date('F d, Y', strtotime($faq->created_at))}} at {{ date('g:ia', strtotime($faq->created_at))}} / {{$faq->created_at->diffForHumans()}}
+                        <strong><i class="fa fa-clock-o"></i> Inserted:</strong> {{ date('F d, Y', strtotime($faq->created_at))}} at {{ date('g:ia', strtotime($faq->created_at))}} / {{$faq->created_at->diffForHumans()}}
                     </p>
                 </div>
                 <div class="col-md-6">
                     <p class="card-subtitle">
-                        <strong><i class="fa fa-clock-o"></i> Updated at:</strong> {{ date('F d, Y', strtotime($faq->updated_at))}} at {{ date('g:ia', strtotime($faq->updated_at))}} / {{$faq->updated_at->diffForHumans()}} 
+                        <strong><i class="fa fa-clock-o"></i> Updated:</strong> {{ date('F d, Y', strtotime($faq->updated_at))}} at {{ date('g:ia', strtotime($faq->updated_at))}} / {{$faq->updated_at->diffForHumans()}} 
                     </p>  
                 </div>
             </div>                
-            <div style="background-color: #d4c7c7;padding:1em;box-shadow: 2px 5px 2px #636161;"><strong>Answer:</strong>
+            <div style="background-color: #d4c7c7;padding:1em;box-shadow: 2px 5px 2px #636161;">
+                <p>
+                    <strong>Display:</strong>
+                    @if($faq->side == 1)
+                        Left Side
+                    @elseif($faq->side == 2)
+                        Right Side
+                    @else 
+                        Nothing
+                    @endif
+                </p>
+
+                <strong>Answer:</strong>
                 {!!$faq->ans!!}
             </div>
             <br>
