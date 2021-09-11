@@ -44,5 +44,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/member/{id}/edit', [BackController::class, 'member_edit'])->name('admin.member_edit');
     Route::put('/member/{id}', [BackController::class, 'member_update'])->name('admin.member_update');
     Route::get('/member/{id}', [BackController::class, 'member_show'])->name('admin.member_show');
+    
+    //Testimonial CRUD
+    Route::get('/testimonial', [BackController::class, 'test_index'])->name('admin.test_index');
+    Route::get('/testimonial/create', [BackController::class, 'test_create'])->name('admin.test_create');
+    Route::post('/testimonial', [BackController::class, 'test_store'])->name('admin.test_store');
+    Route::get('/testimonial/{id}', [BackController::class, 'test_show'])->name('admin.test_show');
+    Route::get('/testimonial/{id}/edit', [BackController::class, 'test_edit'])->name('admin.test_edit');
+    Route::put('/testimonial/{id}', [BackController::class, 'test_update'])->name('admin.test_update');
+    Route::delete('/testimonial/{id}', [BackController::class, 'test_destroy'])->name('admin.test_destroy');
+
 
 });

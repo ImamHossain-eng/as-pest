@@ -9,6 +9,7 @@ use File;
 
 use App\Models\Faq;
 use App\Models\Member;
+use App\Models\Testimonial;
 
 class BackController extends Controller
 {
@@ -153,5 +154,84 @@ class BackController extends Controller
     public function member_show($id){
         $member = Member::find($id);
         return view('admin.member.show', compact('member'));
+    }
+
+    //testimonial crud start from here
+    public function test_index(){
+        $tests = Testimonial::all();
+        return view('admin.test.index', compact('tests'));
+    }
+    public function test_create(){
+        return view('admin.test.create');
+    }
+    public function test_store(Request $request){
+        $this->validate($request, [
+            'name'=>'required',
+            'profession'=>'required',
+            'body'=>'required'
+        ]);
+
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $fileName = time().'.'.$extension;
+            Image::make($file)->resize(220, 300)->save(public_path('/images/testimonial/'.$fileName));
+        }
+        else{
+            $fileName = 'no_image.png';
+        }
+        $test = new Testimonial;
+        $test->name = $request->input('name');
+        $test->profession = $request->input('profession');
+        $test->body = $request->input('body');
+        $test->image = $fileName;
+        $test->save();
+        return redirect()->route('admin.test_index')->with('success', 'Successfully Created');
+    }
+    public function test_show($id){
+        $test = Testimonial::find($id);
+        return view('admin.test.show', compact('test'));
+    }
+    public function test_edit($id){
+        $test = Testimonial::find($id);
+        return view('admin.test.edit', compact('test'));
+    }
+    public function test_update(Request $request, $id){
+        $this->validate($request, [
+            'name'=>'required',
+            'profession'=>'required',
+            'body'=>'required'
+        ]);
+
+        $test = Testimonial::find($id);
+        $oldImg = $test->image;
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $fileName = time().'.'.$extension;
+            Image::make($file)->resize(220, 300)->save(public_path('/images/testimonial/'.$fileName));
+            if($oldImg != 'no_image.png'){
+                File::delete(public_path('/images/testimonial/'.$oldImg));
+            }
+        }
+        else{
+            $fileName = $oldImg;
+        }
+      
+        $test->name = $request->input('name');
+        $test->profession = $request->input('profession');
+        $test->body = $request->input('body');
+        $test->image = $fileName;
+        $test->save();
+        return redirect()->route('admin.test_index')->with('warning', 'Successfully Updated');
+    }
+    public function test_destroy($id){
+        $test = Testimonial::find($id);
+        $oldImg = $test->image;
+        if($oldImg != 'no_image.png'){
+            File::delete(public_path('/images/testimonial/'.$oldImg));
+        }
+        $test->delete();
+        return redirect()->route('admin.test_index')->with('error', 'Successfully Removed');
     }
 }
