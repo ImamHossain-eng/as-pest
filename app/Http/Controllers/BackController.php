@@ -13,6 +13,7 @@ use App\Models\Testimonial;
 
 class BackController extends Controller
 {
+    
     public function admin_home() {
         return view('admin.dashboard');
     }
@@ -175,7 +176,7 @@ class BackController extends Controller
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $fileName = time().'.'.$extension;
-            Image::make($file)->resize(220, 300)->save(public_path('/images/testimonial/'.$fileName));
+            Image::make($file)->resize(300, 300)->save(public_path('/images/testimonial/'.$fileName));
         }
         else{
             $fileName = 'no_image.png';
@@ -209,7 +210,7 @@ class BackController extends Controller
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $fileName = time().'.'.$extension;
-            Image::make($file)->resize(220, 300)->save(public_path('/images/testimonial/'.$fileName));
+            Image::make($file)->resize(300, 300)->save(public_path('/images/testimonial/'.$fileName));
             if($oldImg != 'no_image.png'){
                 File::delete(public_path('/images/testimonial/'.$oldImg));
             }

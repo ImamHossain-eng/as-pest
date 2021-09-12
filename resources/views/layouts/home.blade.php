@@ -22,12 +22,28 @@
     <!-- Template Stylesheet -->
     <link href="{{asset('css/home/style.css')}}" rel="stylesheet">
     <title>A.S Pest Control</title>
+    <style>
+       
+    </style>
     
 
 </head>
 <body>
+    <div class="wrapper">
+    <!-- Top Bar Start -->
+    @include('parts.top_bar')
+    <!-- Top Bar End -->
+
+    <!-- Nav Bar Start -->
+    @include('parts.navbar')
+    <!-- Nav Bar End -->
 
     @yield('content')
+
+    <!-- Footer Start -->
+    @include('parts.footer')
+    <!-- Footer End -->
+    </div>
 
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>

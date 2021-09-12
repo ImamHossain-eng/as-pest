@@ -15,8 +15,17 @@
         <div class="card-header">
             <h3 class="heading"> Testimonial Show </h3>
             <div class="head">
-                <h3>{{$test->name}}</h3>
-                <h5>{{$test->profession}}</h5>
+               <div class="row">
+                <div class="col-md-3">
+                    <img src="{{asset('/images/testimonial/'.$test->image)}}" alt="{{$test->image}}" style="width: 175px; height: 200px;border-radius: 5px;">
+                </div>
+                <div class="col-md-8"><br><br>
+                    <h3>{{$test->name}}</h3>
+                    <hr>
+                    <h5>{{$test->profession}}</h5>
+                </div>
+               </div>
+                
             </div>
             <br>     
         </div>

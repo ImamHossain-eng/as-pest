@@ -19,6 +19,8 @@ Route::get('/', [PagesController::class, 'index'])->name('homepage');
 
 Auth::routes();
 
+Route::get('/contact', [PagesController::class, 'contact']);
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('user');
 
 
