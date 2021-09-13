@@ -68,6 +68,7 @@
         <!-- Testimonial Start -->
         @include('parts.testimonial')
         <!-- Testimonial End -->
+        
         <div class="container">
             <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" scrollamount="5" vspace="2px">
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

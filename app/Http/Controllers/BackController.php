@@ -10,6 +10,7 @@ use File;
 use App\Models\Faq;
 use App\Models\Member;
 use App\Models\Testimonial;
+use App\Models\Service;
 
 class BackController extends Controller
 {
@@ -234,5 +235,86 @@ class BackController extends Controller
         }
         $test->delete();
         return redirect()->route('admin.test_index')->with('error', 'Successfully Removed');
+    }
+    //Service CRUD start from here
+    public function service_index(){
+        $services = Service::all();
+        return view('admin.service.index', compact('services'));
+    }
+    public function service_create(){
+        return view('admin.service.create');
+    }
+    public function service_store(Request $request){
+        $this->validate($request, [
+            'name' => 'required',
+            'motto' => 'required',
+            'body' => 'required'
+        ]);
+
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $fileName = time().'.'.$extension;
+            Image::make($file)->resize(1400, 800)->save(public_path('/images/service/'.$fileName));
+        }
+        else{
+            $fileName = 'no_image.png';
+        }
+
+        $service = new Service;
+        $service->name = $request->input('name');
+        $service->motto = $request->input('motto');
+        $service->body = $request->input('body');
+        $service->image = $fileName;
+        $service->save();
+        return redirect()->route('admin.service_index')->with('success', 'Successfully Inserted');
+    }
+    public function service_destroy($id){
+        $service = Service::find($id);
+        $oldImg = $service->image;
+        if($oldImg != 'no_image.png'){
+            File::delete(public_path('/images/service/'.$oldImg));
+        }
+        $service->delete();
+        return redirect()->route('admin.service_index')->with('error', 'Successfully Removed');
+    }
+    public function service_show($id){
+        $service = Service::find($id);
+        return view('admin.service.show', compact('service'));
+    }
+    public function service_edit($id){
+        $service = Service::find($id);
+        return view('admin.service.edit', compact('service'));
+    }
+    public function service_update(Request $request, $id){
+        $this->validate($request, [
+            'name' => 'required',
+            'motto' => 'required',
+            'body' => 'required'
+        ]);
+
+        $service = Service::find($id);
+        $oldImg = $service->image;
+
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $fileName = time().'.'.$extension;
+            Image::make($file)->resize(1400, 800)->save(public_path('/images/service/'.$fileName));
+            if($oldImg != 'no_image.png'){
+                File::delete(public_path('/images/service/'.$oldImg));
+            }
+        }
+        else{
+            $fileName = $oldImg;
+        }
+
+        
+        $service->name = $request->input('name');
+        $service->motto = $request->input('motto');
+        $service->body = $request->input('body');
+        $service->image = $fileName;
+        $service->save();
+        return redirect()->route('admin.service_index')->with('warning', 'Successfully Updated');
     }
 }

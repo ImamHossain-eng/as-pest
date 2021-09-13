@@ -56,5 +56,15 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::put('/testimonial/{id}', [BackController::class, 'test_update'])->name('admin.test_update');
     Route::delete('/testimonial/{id}', [BackController::class, 'test_destroy'])->name('admin.test_destroy');
 
+    //Service CRUD
+    Route::get('/service', [BackController::class, 'service_index'])->name('admin.service_index');
+    Route::get('/service/create', [BackController::class, 'service_create'])->name('admin.service_create');
+    Route::post('/service', [BackController::class, 'service_store'])->name('admin.service_store');
+    Route::delete('/service/{id}', [BackController::class, 'service_destroy'])->name('admin.service_destroy');
+    Route::get('/service/{id}', [BackController::class, 'service_show'])->name('admin.service_show');
+    Route::get('/service/{id}/edit', [BackController::class, 'service_edit'])->name('admin.service_edit');
+    Route::put('service/{id}', [BackController::class, 'service_update'])->name('admin.service_update');
+
+
 
 });

@@ -107,6 +107,21 @@ font-size: 16px;"> First Login : {{Auth::user()->created_at->diffForHumans()}} &
                         </a>
                     </li>
 
+                    <li>
+                        <a href="#" class="{{ Request::is('admin/service*') ? 'active-menu' : '' }}">
+                            <i class="fa fa-briefcase"></i> 
+                            Service List <span class="fa arrow"></span>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/service/create"><i class="fa fa-plus-square"></i>Add New</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/service"><i class="fa fa-pencil"></i>Manage</a>
+                                </li>
+                            </ul>
+                        </a>
+                    </li>
+
                     
 					                   
                     <li>
