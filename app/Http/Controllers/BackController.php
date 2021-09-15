@@ -11,6 +11,8 @@ use App\Models\Faq;
 use App\Models\Member;
 use App\Models\Testimonial;
 use App\Models\Service;
+use App\Models\Slider;
+use App\Models\Contact;
 
 class BackController extends Controller
 {
@@ -317,4 +319,81 @@ class BackController extends Controller
         $service->save();
         return redirect()->route('admin.service_index')->with('warning', 'Successfully Updated');
     }
+    //slider crud start from here
+    public function slider_index(){
+        $sliders = Slider::all();
+        return view('admin.slider.index', compact('sliders'));
+    }
+    public function slider_create(){
+        return view('admin.slider.create');
+    }
+    public function slider_store(Request $request){
+        
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $fileName = time().'.'.$extension;
+            Image::make($file)->resize(1400, 700)->save(public_path('/images/slider/'.$fileName));
+
+        }
+        else{
+            $fileName =  'no_image.png';
+        }
+        $slider = new Slider;
+        $slider->title = $request->input('title');
+        $slider->sub_title = $request->input('sub_title');
+        $slider->image = $fileName;
+        $slider->save();
+        return redirect()->route('admin.slider_index')->with('success', 'Successfully Inserted');
+        
+    }
+    public function slider_edit($id){
+        $slider = Slider::find($id);
+        return view('admin.slider.edit', compact('slider'));
+    }
+    public function slider_update(Request $request, $id){
+        $slider = Slider::find($id);
+        $oldImg = $slider->image;
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $fileName = time().'.'.$extension;
+            Image::make($file)->resize(1400, 700)->save(public_path('/images/slider/'.$fileName));
+            if($oldImg != 'no_image.png'){
+                File::delete(public_path('/images/slider/'.$oldImg));
+            }
+
+        }
+        else{
+            $fileName =  $oldImg;
+        }
+        
+        $slider->title = $request->input('title');
+        $slider->sub_title = $request->input('sub_title');
+        $slider->image = $fileName;
+        $slider->save();
+        return redirect()->route('admin.slider_index')->with('warning', 'Successfully Updated');
+    }
+    public function slider_destroy($id){
+        $slider = Slider::find($id);
+        $oldImg = $slider->image;
+        if($oldImg != 'no_image.png'){
+            File::delete(public_path('/images/slider/'.$oldImg));
+        }
+        $slider->delete();
+        return redirect()->route('admin.slider_index')->with('error', 'Successfully Removed');
+    }
+    public function message_index(){
+        $contacts = Contact::orderBy('created_at', 'desc')->paginate(10);
+        return view('admin.message.index', compact('contacts'));
+    }
+    public function message_show($id){
+        $message = Contact::find($id);
+        if($message->notify == false){
+            $message->notify = true;
+            $message->save();
+        }
+        return view('admin.message.show', compact('message'));
+    }
+
 }

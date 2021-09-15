@@ -14,7 +14,7 @@
                         </tr>
                         <tr>
                             <td><i class="fa fa-phone-alt" style="padding-right:.5em;"></i></td>
-                            <td>+8801727265633 <br>+8801727265633 </td>
+                            <td>+8801727265633 <br>+8801833669945 </td>
                         </tr>
                         <tr>
                             <td><i class="fa fa-envelope" style="padding-right:.5em;"></i></td>

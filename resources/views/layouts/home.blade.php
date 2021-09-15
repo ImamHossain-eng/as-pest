@@ -37,7 +37,8 @@
     <!-- Nav Bar Start -->
     @include('parts.navbar')
     <!-- Nav Bar End -->
-
+    @include('parts.message')
+    
     @yield('content')
 
     <!-- Footer Start -->

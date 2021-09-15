@@ -8,6 +8,8 @@ use App\Models\Faq;
 use App\Models\Member;
 use App\Models\Testimonial;
 use App\Models\Service;
+use App\Models\Slider;
+use App\Models\Contact;
 
 class PagesController extends Controller
 {
@@ -18,9 +20,20 @@ class PagesController extends Controller
         $testimonials = Testimonial::latest()->take(5)->get();
         $testimonial_images = Testimonial::latest()->take(5)->get();
         $services = Service::orderBy('created_at', 'asc')->take(6)->get();
-        return view('HomePage', compact('faq_lefts', 'faq_rights', 'members', 'testimonials', 'testimonial_images', 'services'));
+        $sliders = Slider::orderBy('created_at', 'asc')->take(6)->get();
+        return view('HomePage', compact('faq_lefts', 'faq_rights', 'members', 'testimonials', 'testimonial_images', 'services', 'sliders'));
     }
     public function contact(){
         return view('contact');
+    }
+    public function contact_store(Request $request){
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'mobile' => 'required|min:10|max:11',
+            'msg' => 'required',
+        ]);
+        Contact::create($request->all());
+        return redirect()->route('contact')->with('success', 'Successfully sent the Message');
     }
 }

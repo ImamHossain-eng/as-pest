@@ -122,6 +122,30 @@ font-size: 16px;"> First Login : {{Auth::user()->created_at->diffForHumans()}} &
                         </a>
                     </li>
 
+                    <li>
+                        <a href="#" class="{{ Request::is('admin/slider*') ? 'active-menu' : '' }}">
+                            <i class="fa fa-picture-o"></i> 
+                            Slider Images <span class="fa arrow"></span>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/slider/create"><i class="fa fa-plus-square"></i>Add New</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/slider"><i class="fa fa-pencil"></i>Manage</a>
+                                </li>
+                            </ul>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="{{ Request::is('admin/message*') ? 'active-menu' : '' }}" href="/admin/message">
+                            <i class="fa fa-envelope-o fa-3x"></i> Messages
+                            <span style="float:right;color:#FDBE33;font-weight:bold">
+                                 {{Contact::where('notify', false)->count()}} 
+                                 / {{Contact::count()}}
+                                </span>
+                        </a>
+                    </li>
                     
 					                   
                     <li>
@@ -151,7 +175,7 @@ font-size: 16px;"> First Login : {{Auth::user()->created_at->diffForHumans()}} &
                             </li>
                         </ul>
                       </li>  
-                  <li  >
+                    <li>
                         <a  href="blank.html"><i class="fa fa-square-o fa-3x"></i> Blank Page</a>
                     </li>	
                 </ul>

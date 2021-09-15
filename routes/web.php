@@ -19,7 +19,8 @@ Route::get('/', [PagesController::class, 'index'])->name('homepage');
 
 Auth::routes();
 
-Route::get('/contact', [PagesController::class, 'contact']);
+Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
+Route::post('/contact', [PagesController::class, 'contact_store'])->name('contact_store');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('user');
 
@@ -65,6 +66,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/service/{id}/edit', [BackController::class, 'service_edit'])->name('admin.service_edit');
     Route::put('service/{id}', [BackController::class, 'service_update'])->name('admin.service_update');
 
+    //Slider CRUD
+    Route::get('/slider', [BackController::class, 'slider_index'])->name('admin.slider_index');
+    Route::get('/slider/create', [BackController::class, 'slider_create'])->name('admin.slider_create');
+    Route::post('/slider', [BackController::class, 'slider_store'])->name('admin.slider_store');
+    Route::delete('/slider/{id}', [BackController::class, 'slider_destroy'])->name('admin.slider_destroy');
+    Route::get('/slider/{id}/edit', [BackController::class, 'slider_edit'])->name('admin.slider_edit');
+    Route::put('slider/{id}', [BackController::class, 'slider_update'])->name('admin.slider_update');
 
+
+    //Message Functionality
+    Route::get('/message', [BackController::class, 'message_index'])->name('admin.message_index');
+    Route::get('/message/{id}', [BackController::class, 'message_show'])->name('admin.message_show');
 
 });

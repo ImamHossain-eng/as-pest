@@ -1,36 +1,30 @@
 <div id="carousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
-        <li data-target="#carousel" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel" data-slide-to="1"></li>
-        <li data-target="#carousel" data-slide-to="2"></li>
+        
+        @foreach($sliders as $key => $slide)
+        <li data-target="#carousel" data-slide-to="{{$key}}" 
+        @if($key==0) class="active" 
+        @endif></li>
+        @endforeach
+        
     </ol>
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="{{asset('images/slider/1.jpg')}}" alt="Carousel Image">
-            <div class="carousel-caption">
-                <p class="animated fadeInRight">We Are Professional</p>
-                <h1 class="animated fadeInLeft">For Your Dream Home</h1>
-                <a class="btn animated fadeInUp" href="#">Get A Quote</a>
-            </div>
-        </div>
 
-        <div class="carousel-item">
-            <img src="{{asset('images/slider/2.jpg')}}" alt="Carousel Image">
+        @foreach($sliders as $key => $slider)
+        <div @if($key==0) class="carousel-item active"
+             @else class="carousel-item"
+             @endif
+        >
+            <img src="{{asset('images/slider/'.$slider->image)}}" alt="Carousel Image">
             <div class="carousel-caption">
-                <p class="animated fadeInRight">Professional Worker</p>
-                <h1 class="animated fadeInLeft">We Clean Your Home</h1>
-                <a class="btn animated fadeInUp" href="#">Get A Quote</a>
+                <p class="animated fadeInRight">{{$slider->sub_title}}</p>
+                <h1 class="animated fadeInLeft">{{$slider->title}}</h1>
+                <!--<a class="btn animated fadeInUp" href="#">Get A Quote</a>-->
             </div>
         </div>
+        @endforeach
 
-        <div class="carousel-item">
-            <img src="{{asset('images/slider/3.jpg')}}" alt="Carousel Image">
-            <div class="carousel-caption">
-                <p class="animated fadeInRight">We Are Trusted</p>
-                <h1 class="animated fadeInLeft">For Your Dream Home</h1>
-                <a class="btn animated fadeInUp" href="#">Get A Quote</a>
-            </div>
-        </div>
+        
     </div>
 
     <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
