@@ -48,7 +48,12 @@
                     <td>
                         <a href="/admin/message/{{$contact->id}}" class="btn btn-primary">
                             <i class="fa fa-eye"></i>
-                        </a>                        
+                        </a>   
+                        {{Form::open(['route' => ['admin.message_destroy', $contact->id], 'method' => 'DELETE', 'style'=>'display:inline;'])}}
+                            <button class="btn btn-danger">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        {{Form::close()}}                     
                     </td>
                 </tr>
 

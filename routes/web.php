@@ -78,5 +78,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     //Message Functionality
     Route::get('/message', [BackController::class, 'message_index'])->name('admin.message_index');
     Route::get('/message/{id}', [BackController::class, 'message_show'])->name('admin.message_show');
+    Route::delete('/message/{id}', [BackController::class, 'message_destroy'])->name('admin.message_destroy');
 
 });

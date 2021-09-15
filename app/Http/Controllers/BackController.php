@@ -395,5 +395,9 @@ class BackController extends Controller
         }
         return view('admin.message.show', compact('message'));
     }
+    public function message_destroy($id){
+        Contact::find($id)->delete();
+        return redirect()->route('admin.message_index')->with('error', 'Successfully Removed');
+    }
 
 }
