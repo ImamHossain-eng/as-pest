@@ -35,12 +35,10 @@
             <div class="col-md-6 col-lg-3">
                 <div class="footer-link">
                     <h2>Our Services </h2>
-                    <a href="#">Household Pest Control</a>
-                    <a href="#">Termite Profing</a>
-                    <a href="#">Mosquito Control</a>
-                    <a href="#">Rodent Control</a>
-                    <a href="#">Bed-Bug Service</a>
-                    <a href="#">Furmigation</a>
+                    @php($abcs = Service::all())
+                    @foreach($abcs as $abc)
+                        <a href="/service/{{$abc->id}}">{{$abc->name}}</a>
+                    @endforeach
                 </div>
             </div>
             <div class="col-md-6 col-lg-3">
@@ -69,11 +67,11 @@
     </div>
     <div class="container footer-menu">
         <div class="f-menu">
-            <a href="">Terms of use</a>
-            <a href="">Privacy policy</a>
-            <a href="">Cookies</a>
-            <a href="">Help</a>
-            <a href="">FQAs</a>
+            <a href="#">Terms of use</a>
+            <a href="#">Privacy policy</a>
+            <a href="#">Cookies</a>
+            <a href="#">Help</a>
+            <a href="#">FQAs</a>
         </div>
     </div>
     <div class="container copyright">

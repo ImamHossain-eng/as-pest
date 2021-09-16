@@ -8,25 +8,29 @@
 
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
-                    <a href="/" class="nav-item nav-link active">Home</a>
-                    <a href="#" class="nav-item nav-link">About</a>
-                    <a href="#" class="nav-item nav-link">Team</a>
+                    <a href="/" class="{{ Request::is('/') ? 'nav-item nav-link active' : 'nav-item nav-link' }}">Home</a>
+                    
+                    <a href="#" class="{{ Request::is('about') ? 'nav-item nav-link active' : 'nav-item nav-link' }}">About</a>
+                    <a href="/team" class="{{ Request::is('team') ? 'nav-item nav-link active' : 'nav-item nav-link' }}">Team</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Our Services</a>
                         <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item">Household Pest Control</a>
-                            <a href="#" class="dropdown-item">Termite Profing</a>
-                            <a href="#" class="dropdown-item">Mosquito Control</a>
-                            <a href="#" class="dropdown-item">Rodent Control</a>
-                            <a href="#" class="dropdown-item">Bed-Bug Service</a>
-                            <a href="#" class="dropdown-item">Fumigation</a>
+                            @php($abs = Service::all())
+                            @foreach($abs as $ab)
+                                <a href="/service/{{$ab->id}}" class="dropdown-item">{{$ab->name}}</a>                            
+                            @endforeach
 
                         </div>
                     </div>
-                    <a href="/contact" class="nav-item nav-link">Contact</a>
+                    <a href="/contact" class="{{ Request::is('contact') ? 'nav-item nav-link active' : 'nav-item nav-link' }}">Contact</a>
                 </div>
                 <div class="ml-auto">
-                    <a class="btn" href="#">Get A Quote</a>
+                    {{Form::open(['route'=>'service_search', 'method'=>'POST', 'style'=>'display:flex'])}}
+                                <input class="form-control" name="search" type="text" placeholder="Search Service">
+                                <button class="btn" type="submit" style="border-radius:5px;margin-left:5px;"><i class="fa fa-search"></i></button>
+                    {{Form::close()}}
+                     
+                    
                 </div>
             </div>
         </nav>

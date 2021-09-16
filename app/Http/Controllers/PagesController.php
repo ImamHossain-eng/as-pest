@@ -36,4 +36,25 @@ class PagesController extends Controller
         Contact::create($request->all());
         return redirect()->route('contact')->with('success', 'Successfully sent the Message');
     }
+    //service CRUD
+    public function service_show($id){
+        $service = Service::find($id);
+        $members = Member::all();
+        $services = Service::orderBy('created_at', 'asc')->get();
+        return view('pages.service_show', compact('service', 'members', 'services'));
+    }
+    public function service_search(Request $request){
+        $this->validate($request, [
+            'search' => 'required'
+        ]);
+        $search = $request->input('search');
+        $service = Service::where('name', 'LIKE', '%' . $search . '%')->orWhere('motto', 'LIKE', '%' . $search . '%')->first();
+        $members = Member::all();
+        $services = Service::orderBy('created_at', 'asc')->get();
+        return view('pages.service_show', compact('service', 'members', 'services'));
+    }
+    public function team_index(){
+        $members = Member::all();
+        return view('pages.team', compact('members'));
+    }
 }

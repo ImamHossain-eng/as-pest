@@ -21,6 +21,10 @@ Auth::routes();
 
 Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
 Route::post('/contact', [PagesController::class, 'contact_store'])->name('contact_store');
+Route::get('/team', [PagesController::class, 'team_index'])->name('team_index');
+//Service CRUD
+Route::get('/service/{id}', [PagesController::class, 'service_show'])->name('service_show');
+Route::post('/service', [PagesController::class, 'service_search'])->name('service_search');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('user');
 

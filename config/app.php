@@ -229,6 +229,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Contact' => App\Models\Contact::class,
+        'Service' => App\Models\Service::class,
 
     ],
 
