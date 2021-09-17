@@ -10,6 +10,7 @@
                     <th>Profession</th>
                     <th>Inserted</th>
                     <th>Updated</th>
+                    <th>Status</th>
                     <th>Option</th>
                 </tr>
             </thead>
@@ -20,7 +21,15 @@
                     <td> {{$test->name}} </td>
                     <td> {{$test->profession}} </td>
                     <td> {{ date('F d, Y', strtotime($test->created_at))}} at {{ date('g:ia', strtotime($test->created_at))}} </td>
-                    <td> {{ date('F d, Y', strtotime($test->updated_at))}} at {{ date('g:ia', strtotime($test->updated_at))}} </td>                    
+                    <td> {{ date('F d, Y', strtotime($test->updated_at))}} at {{ date('g:ia', strtotime($test->updated_at))}} </td> 
+                    <td>
+                        @if($test->show == 0)
+                            <span>Pending</span>
+                        @else
+                            <span>Published</span>
+                        
+                        @endif
+                    </td>                   
                     <td>
                         <a href="/admin/testimonial/{{$test->id}}" class="btn btn-primary">
                             <i class="fa fa-eye"></i>

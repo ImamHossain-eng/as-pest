@@ -5,7 +5,7 @@
                 <div class="logo">
                     <a href="/">
                         <h1>A.S Pest Control</h1>
-                        <!-- <img src="img/logo.jpg" alt="Logo"> -->
+                        <!--php <img src="img/logo.jpg" alt="Logo"> -->
                     </a>
                 </div>
             </div>

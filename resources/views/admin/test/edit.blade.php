@@ -30,9 +30,23 @@
                 <input type="file" name="image" class="form-control">
             </div><br>
 
+
+
+            <div class="form-group input-group input-group-lg">
+                <span class="input-group-addon">Testimonial Status</span>
+                <select name="show" class="form-control">
+                    <option value="null">Choose Option</option>
+                    <option value="0">Pending</option>
+                    <option value="1">Published</option>
+                </select>
+            </div><br>
+
+
+
+
             <div class="form-group">
                 <textarea name="body" id="ckview" class="form-control"  placeholder="Enter the Body Text">{{$test->body}}</textarea>
-            </div>
+            </div><br>
 
                 <button class="btn btn-primary">
                     Save

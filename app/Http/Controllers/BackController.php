@@ -184,11 +184,19 @@ class BackController extends Controller
         else{
             $fileName = 'no_image.png';
         }
+
+        $newShow = $request->input('show');
+        if($newShow != 'null'){
+            $show = $newShow;
+        }else{
+            $show = false;
+        }
         $test = new Testimonial;
         $test->name = $request->input('name');
         $test->profession = $request->input('profession');
         $test->body = $request->input('body');
         $test->image = $fileName;
+        $test->show = $show;
         $test->save();
         return redirect()->route('admin.test_index')->with('success', 'Successfully Created');
     }
@@ -208,6 +216,7 @@ class BackController extends Controller
         ]);
 
         $test = Testimonial::find($id);
+        $oldShow = $test->show;
         $oldImg = $test->image;
         if($request->hasFile('image')){
             $file = $request->file('image');
@@ -221,11 +230,20 @@ class BackController extends Controller
         else{
             $fileName = $oldImg;
         }
+
+        //show validation
+        $newShow = $request->input('show');
+        if($newShow != 'null'){
+            $show = $newShow;
+        }else{
+            $show = $oldShow;
+        }
       
         $test->name = $request->input('name');
         $test->profession = $request->input('profession');
         $test->body = $request->input('body');
         $test->image = $fileName;
+        $test->show = $show;
         $test->save();
         return redirect()->route('admin.test_index')->with('warning', 'Successfully Updated');
     }

@@ -12,6 +12,7 @@ class Testimonial extends Model
         'name',
         'profession',
         'body',
-        'image'
+        'image',
+        'show'
     ];
 }

@@ -42,7 +42,8 @@
   <div style="color: white;
 padding: 15px 50px 5px 50px;
 float: right;
-font-size: 16px;"> First Login : {{Auth::user()->created_at->diffForHumans()}} &nbsp; 
+font-size: 16px;"> First Login :  
+{{ date('F d, Y(D)', strtotime(Auth::user()->created_at))}} at {{ date('g:ia', strtotime(Auth::user()->created_at))}} &nbsp; 
 
 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none" style="display:inline;">
     @csrf
