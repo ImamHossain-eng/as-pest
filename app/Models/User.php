@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Testimonial;
+use App\Models\User_info;
 
 class User extends Authenticatable
 {
@@ -44,5 +45,8 @@ class User extends Authenticatable
     ];
     public function testimonials(){
         return $this->hasMany(Testimonial::class);
+    }
+    public function info(){
+        return $this->hasOne(User_info::class);
     }
 }

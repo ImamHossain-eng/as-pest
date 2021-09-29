@@ -33,6 +33,13 @@ Route::group(['prefix' => 'user', 'middleware' => 'user'], function(){
     Route::get('/testimonial', [UserController::class, 'user_testimonial'])->name('user.testimonial');
     Route::get('/testimonial/create', [UserController::class, 'testimonial_create'])->name('user.testimonial_create');
     Route::post('/testimonial', [UserController::class, 'testimonial_store'])->name('user.testimonial_store');
+
+    //User Profile Update
+    Route::get('/information/create', [UserController::class, 'info_create'])->name('user.info_create');
+    Route::post('/information', [UserController::class, 'info_store'])->name('user.info_store');
+    Route::put('/information', [UserController::class, 'info_update'])->name('user.info_update');
+    Route::get('/information', [UserController::class, 'info_show'])->name('user.info_show');
+
 });
 
 

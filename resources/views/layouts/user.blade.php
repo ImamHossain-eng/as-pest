@@ -56,13 +56,29 @@ font-size: 16px;"> First Login :
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 				<li class="text-center">
-                    <img src="{{asset('/images/user/find_user.png')}}" class="user-image img-responsive"/>
+                    <img src="{{asset('/images/user/'.Auth::user()->info->image)}}" class="user-image img-responsive"/>
 					</li>
 				
 					
                     <li>
                         <a class="{{ Request::is('home') ? 'active-menu' : '' }}"  href="/home"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
                     </li>
+
+                    <li>
+                        <a href="#" class="{{ Request::is('user/information*') ? 'active-menu' : '' }}">
+                            <i class="fa  fa-question-circle-o fa-3x"></i> 
+                            Profile <span class="fa arrow"></span>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/user/information/create"><i class="fa fa-plus-square"></i>Update Your Information</a>
+                                </li>
+                                <li>
+                                    <a href="/user/information"><i class="fa fa-pencil"></i>Show Your Profile</a>
+                                </li>
+                            </ul>
+                        </a>
+                    </li>
+
                     <li>
                         <a href="#" class="{{ Request::is('user/testimonial*') ? 'active-menu' : '' }}">
                             <i class="fa  fa-question-circle-o fa-3x"></i> 
