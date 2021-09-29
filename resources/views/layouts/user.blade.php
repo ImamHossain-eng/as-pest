@@ -61,7 +61,7 @@ font-size: 16px;"> First Login :
 				
 					
                     <li>
-                        <a class="{{ Request::is('user') ? 'active-menu' : '' }}"  href="/home"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
+                        <a class="{{ Request::is('home') ? 'active-menu' : '' }}"  href="/home"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="#" class="{{ Request::is('user/testimonial*') ? 'active-menu' : '' }}">
@@ -69,10 +69,10 @@ font-size: 16px;"> First Login :
                             Testimonial <span class="fa arrow"></span>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/admin/faq/create"><i class="fa fa-plus-square"></i>Give Us A Testimonial</a>
+                                    <a href="/user/testimonial/create"><i class="fa fa-plus-square"></i>Give Us A Testimonial</a>
                                 </li>
                                 <li>
-                                    <a href="/admin/faq"><i class="fa fa-pencil"></i>Manage Testimonial</a>
+                                    <a href="/user/testimonial"><i class="fa fa-pencil"></i>Manage Testimonial</a>
                                 </li>
                             </ul>
                         </a>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BackController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,11 +23,17 @@ Auth::routes();
 Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
 Route::post('/contact', [PagesController::class, 'contact_store'])->name('contact_store');
 Route::get('/team', [PagesController::class, 'team_index'])->name('team_index');
-//Service CRUD
+//Service function
 Route::get('/service/{id}', [PagesController::class, 'service_show'])->name('service_show');
 Route::post('/service', [PagesController::class, 'service_search'])->name('service_search');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('user');
+Route::group(['prefix' => 'user', 'middleware' => 'user'], function(){
+    //Testimonial
+    Route::get('/testimonial', [UserController::class, 'user_testimonial'])->name('user.testimonial');
+    Route::get('/testimonial/create', [UserController::class, 'testimonial_create'])->name('user.testimonial_create');
+    Route::post('/testimonial', [UserController::class, 'testimonial_store'])->name('user.testimonial_store');
+});
 
 
 
