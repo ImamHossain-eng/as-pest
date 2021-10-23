@@ -56,7 +56,7 @@ font-size: 16px;"> First Login :
             <div class="sidebar-collapse">
                 <ul class="nav" id="main-menu">
 				<li class="text-center">
-                    <img src="{{asset('/images/user/'.Auth::user()->info->image)}}" class="user-image img-responsive"/>
+                    <img src="{{asset('/images/admin/find_user.png')}}" class="user-image img-responsive"/>
 					</li>
 				
 					

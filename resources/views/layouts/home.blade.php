@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="AS Pest Control Bangladesh is one of the Front Liner Pest Control. A S PestControl Best Better Pest Control BD bd Bangladesh">
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 

@@ -93,7 +93,7 @@ class BackController extends Controller
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $fileName = time().'.'.$extension;
-            Image::make($file)->resize(220, 300)->save(public_path('/images/staffs/'.$fileName));
+            Image::make($file)->resize(350, 250)->save(public_path('/images/staffs/'.$fileName));
         }
         else{
             $fileName = 'no_image.png';
@@ -136,7 +136,7 @@ class BackController extends Controller
             $file = $request->file('image');
             $extension = $file->getClientOriginalExtension();
             $fileName = time().'.'.$extension;
-            Image::make($file)->resize(220, 300)->save(public_path('/images/staffs/'.$fileName));
+            Image::make($file)->resize(350, 250)->save(public_path('/images/staffs/'.$fileName));
             if($oldImg != 'no_image.png'){
                 File::delete(public_path('/images/staffs/'.$oldImg));
             }

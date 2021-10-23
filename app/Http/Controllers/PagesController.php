@@ -48,10 +48,19 @@ class PagesController extends Controller
             'search' => 'required'
         ]);
         $search = $request->input('search');
-        $service = Service::where('name', 'LIKE', '%' . $search . '%')->orWhere('motto', 'LIKE', '%' . $search . '%')->first();
-        $members = Member::all();
-        $services = Service::orderBy('created_at', 'asc')->get();
-        return view('pages.service_show', compact('service', 'members', 'services'));
+        $service = Service::where('name', 'LIKE', '%' . $search . '%')
+        ->orWhere('motto', 'LIKE', '%' . $search . '%')
+        ->orWhere('body', 'LIKE', '%' . $search . '%')
+        ->first();
+        if($service != ''){
+            $members = Member::all();
+            $services = Service::orderBy('created_at', 'asc')->get();
+            return view('pages.service_show', compact('service', 'members', 'services'));
+        }else{
+            //return redirect()->back()->with('error', 'No Searching result found');\
+            return redirect()->route('homepage')->with('error', 'No Searching Result Found');
+        }
+        
     }
     public function team_index(){
         $members = Member::all();

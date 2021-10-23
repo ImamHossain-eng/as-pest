@@ -18,7 +18,7 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', [PagesController::class, 'index'])->name('homepage');
 
-Auth::routes();
+Auth::routes(['register'=>false]);
 
 Route::get('/contact', [PagesController::class, 'contact'])->name('contact');
 Route::post('/contact', [PagesController::class, 'contact_store'])->name('contact_store');
