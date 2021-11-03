@@ -63,6 +63,22 @@ font-size: 16px;"> First Login :
                     <li>
                         <a class="{{ Request::is('admin') ? 'active-menu' : '' }}"  href="/admin"><i class="fa fa-dashboard fa-3x"></i> Dashboard</a>
                     </li>
+
+                    <li>
+                        <a href="#" class="{{ Request::is('admin/role*') ? 'active-menu' : '' }}">
+                            <i class="fa  fa-users fa-3x"></i> 
+                            User Role <span class="fa arrow"></span>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/role/create"><i class="fa fa-plus-square"></i>Add New Role</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/role"><i class="fa fa-pencil"></i>Manage Role</a>
+                                </li>
+                            </ul>
+                        </a>
+                    </li>
+
                     <li>
                         <a href="#" class="{{ Request::is('admin/faq*') ? 'active-menu' : '' }}">
                             <i class="fa  fa-question-circle-o fa-3x"></i> 

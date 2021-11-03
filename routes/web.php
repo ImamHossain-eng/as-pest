@@ -48,6 +48,11 @@ Route::group(['prefix' => 'user', 'middleware' => 'user'], function(){
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/', [BackController::class, 'admin_home'])->name('admin.home');
 
+    //Role CRUD
+    Route::get('/role', [BackController::class, 'role_index'])->name('admin.role_index');
+    Route::get('/role/create', [BackController::class, 'role_create'])->name('admin.role_create');
+    Route::post('/role', [BackController::class, 'role_store'])->name('admin.role_store');
+
     //FAQ CRUD
     Route::get('/faq/create', [BackController::class, 'faq_create'])->name('admin.faq_create');
     Route::get('/faq', [BackController::class, 'faq_index'])->name('admin.faq_index');

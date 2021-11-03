@@ -13,6 +13,7 @@ use App\Models\Testimonial;
 use App\Models\Service;
 use App\Models\Slider;
 use App\Models\Contact;
+use App\Models\Role;
 
 class BackController extends Controller
 {
@@ -21,6 +22,23 @@ class BackController extends Controller
         return view('admin.dashboard');
     }
 
+    public function role_index(){
+        $roles = Role::all();
+        return view('admin.role.index', compact('roles'));
+    }
+    public function role_create(){
+        return view('admin.role.create');
+    }
+    public function role_store(Request $request){
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+        $role = new Role;
+        $role->name = $request->input('name');
+        $role->status = true;
+        $role->save();
+        return redirect()->route('admin.role_index')->with('success', 'Successfully Created');
+    }
     public function faq_create(){
         return view('admin.faq.create');
     }
