@@ -163,6 +163,16 @@ font-size: 16px;"> First Login :
                                 </span>
                         </a>
                     </li>
+
+                    <li>
+                        <a class="{{ Request::is('admin/visitor*') ? 'active-menu' : '' }}" href="/admin/visitor">
+                            <i class="fa fa-users fa-3x"></i> Visitors
+                            <span style="float:right;color:#FDBE33;font-weight:bold">
+                                 {{Visitor::where('created_at', '>=', Carbon\Carbon::today()->toDateString())->count()}} 
+                                 / {{Visitor::count()}}
+                                </span>
+                        </a>
+                    </li>
                     
 					                   
                     <li>

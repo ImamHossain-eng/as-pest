@@ -10,10 +10,50 @@ use App\Models\Testimonial;
 use App\Models\Service;
 use App\Models\Slider;
 use App\Models\Contact;
+use App\Models\Visitor;
+
+use Carbon\Carbon;
 
 class PagesController extends Controller
 {
+    // public function visitor_count(){
+    //     // $ip = request()->ip();
+    //     // $visitor_db = Visitor::latest()->where('ip', $ip)->first();
+    //     // if($visitor_db){
+    //     //     $diff = Carbon::parse($visitor_db->created_at)->diffInHours();
+    //     //     if($diff > 23){
+    //     //         $visitor = new Visitor;
+    //     //         $visitor->ip = $ip;
+    //     //         $visitor->save();
+    //     //     }
+    //     //     //'created_at', '>=', \Carbon::today()->toDateString() 
+    //     //     //$diff = Carbon::parse($notice->created_at)->diffInHours()      
+    //     // }else{
+    //     //     $visitor = new Visitor;
+    //     //     $visitor->ip = $ip;
+    //     //     $visitor->save();
+    //     // }
+
+    //     return view('admin.visitor.visitor');
+    // }
     public function index() {
+        //Get unique visitor IP
+        $ip = request()->ip();
+        $visitor_db = Visitor::latest()->where('ip', $ip)->first();
+        if($visitor_db){
+            $diff = Carbon::parse($visitor_db->created_at)->diffInHours();
+            if($diff > 23){
+                $visitor = new Visitor;
+                $visitor->ip = $ip;
+                $visitor->save();
+            }     
+        }else{
+            $visitor = new Visitor;
+            $visitor->ip = $ip;
+            $visitor->save();
+        }
+
+        //Fetch Data from db
         $faq_lefts = Faq::orderBy('created_at', 'desc')->where('side', 1)->take(5)->get();
         $faq_rights = Faq::orderBy('created_at', 'asc')->where('side', 2)->take(5)->get();
         $members = Member::orderBy('created_at', 'asc')->take(4)->get();

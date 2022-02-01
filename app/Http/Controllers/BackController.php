@@ -14,6 +14,7 @@ use App\Models\Service;
 use App\Models\Slider;
 use App\Models\Contact;
 use App\Models\Role;
+use App\Models\Visitor;
 
 class BackController extends Controller
 {
@@ -434,6 +435,14 @@ class BackController extends Controller
     public function message_destroy($id){
         Contact::find($id)->delete();
         return redirect()->route('admin.message_index')->with('error', 'Successfully Removed');
+    }
+    public function visitor_count(){
+        $visitors = Visitor::latest()->paginate(10);
+        return view('admin.visitor.index', compact('visitors'));
+    }
+    public function visitor_destroy($id){
+        Visitor::find($id)->delete();
+        return redirect()->route('admin.visitor_count')->with('error', 'Removed one record.');
     }
 
 }

@@ -16,6 +16,8 @@ use App\Http\Controllers\UserController;
 |
 */
 
+// Route::get('/visitor', [PagesController::class, 'visitor_count']);
+
 Route::get('/', [PagesController::class, 'index'])->name('homepage');
 
 Auth::routes(['register'=>false]);
@@ -102,5 +104,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/message', [BackController::class, 'message_index'])->name('admin.message_index');
     Route::get('/message/{id}', [BackController::class, 'message_show'])->name('admin.message_show');
     Route::delete('/message/{id}', [BackController::class, 'message_destroy'])->name('admin.message_destroy');
+
+    Route::get('/visitor', [BackController::class, 'visitor_count'])->name('admin.visitor_count');
+    Route::delete('/visitor/{id}', [BackController::class, 'visitor_destroy'])->name('admin.visitor_destroy');
 
 });

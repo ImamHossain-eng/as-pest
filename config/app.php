@@ -230,6 +230,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Contact' => App\Models\Contact::class,
         'Service' => App\Models\Service::class,
+        'Visitor' => App\Models\Visitor::class,
 
     ],
 
