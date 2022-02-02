@@ -8,7 +8,7 @@
                             <i class="flaticon-worker"></i>
                         </div>
                         <div class="fact-text">
-                            <h2 data-toggle="counter-up">13</h2>
+                            <h2 data-toggle="counter-up">7</h2>
                             <p>Expert Workers</p>
                         </div>
                     </div>

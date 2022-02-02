@@ -18,7 +18,7 @@
                         </tr>
                         <tr>
                             <td><i class="fa fa-envelope" style="padding-right:.5em;"></i></td>
-                            <td>aspestcontrol09@gmail.com</td>
+                            <td>aspestcontrol09@gmail.com <br> info@aspestcontrolbd.com</td>
 
                         </tr>
                     </table>

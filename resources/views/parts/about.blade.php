@@ -8,10 +8,11 @@
                 </div>
                 <div class="about-text">
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem.
+                        AS Pest Control has been working since 2011. After founding AS Pest Control started to offer protective and robust service against insects.
                     </p>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulputate. Aliquam metus tortor, auctor id gravida condimentum, viverra quis sem. Curabitur non nisl nec nisi scelerisque maximus. Aenean consectetur convallis porttitor. Aliquam interdum at lacus non blandit.
+                        AS Pest Control is a well known pest control company in Bangladesh. Older Clients are always waiting for our service . They became our permanent client due to our quality work and their priority.
+                        Our popular services are Termite Proofing, Mosquito Control, Rodent Control, Bed Bug Service, Fumigation, and Household Pest Control.
                     </p>
                     <a class="btn" href="#">Learn More</a>
                 </div>

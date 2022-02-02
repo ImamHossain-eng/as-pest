@@ -8,7 +8,9 @@
                     </div>
                     <div class="feature-text">
                         <h3>Expert Worker</h3>
-                        <p>Lorem ipsum dolor sit amet elit. Phasus nec pretim ornare velit non</p>
+                        <p>
+                            We have professional and expert workers to make you satisfied.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -19,7 +21,9 @@
                     </div>
                     <div class="feature-text">
                         <h3>Quality Work</h3>
-                        <p>Lorem ipsum dolor sit amet elit. Phasus nec pretim ornare velit non</p>
+                        <p>
+                            Our main objective is to provide you quality work within your desired time.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -30,7 +34,9 @@
                     </div>
                     <div class="feature-text">
                         <h3>24/7 Support</h3>
-                        <p>Lorem ipsum dolor sit amet elit. Phasus nec pretim ornare velit non</p>
+                        <p>
+                            We are always ready to provide customer support anytime.
+                        </p>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,6 @@
 @extends('layouts.home')
 @section('content')
-<body>
-    
-    
+<body>    
         <!-- Carousel Start -->
         @include('parts.carousel')
         <!-- Carousel End -->
@@ -16,6 +14,8 @@
         <!-- About Start -->
         @include('parts.about')
         <!-- About End -->
+        
+        @include('parts.brand2')
 
 
         <!-- Fact Start -->
@@ -58,8 +58,8 @@
         <!-- Team Start -->
         @include('parts.team')
         <!-- Team End -->
-        
 
+        
         <!-- FAQs Start -->
         @include('parts.faq')
         <!-- FAQs End -->
@@ -78,15 +78,7 @@
                 cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
                 proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
               </marquee>
-        </div>
-
-
-        
-
-        
-
-        
-    
+        </div>  
 </body>
 
 @endsection

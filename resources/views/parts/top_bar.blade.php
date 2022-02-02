@@ -30,7 +30,7 @@
                             </div>
                             <div class="top-bar-text">
                                 <h3>Email Us</h3>
-                                <p><strong>aspestcontrol09@gmail.com</strong></p>
+                                <p><strong>aspestcontrol09@gmail.com <br> info@aspestcontrolbd.com</strong></p>
                             </div>
                         </div>
                     </div>

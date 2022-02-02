@@ -231,6 +231,7 @@ return [
         'Contact' => App\Models\Contact::class,
         'Service' => App\Models\Service::class,
         'Visitor' => App\Models\Visitor::class,
+        'Member' => App\Models\Member::class,
 
     ],
 
