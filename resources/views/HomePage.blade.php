@@ -71,12 +71,7 @@
         
         <div class="container">
             <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();" scrollamount="5" vspace="2px">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                AS Pest Control is a well known pest control company in Bangladesh. Older Clients are always waiting for our service . They became our permanent client due to our quality work and their priority. Our popular services are Termite Proofing, Mosquito Control, Rodent Control, Bed Bug Service, Fumigation, and Household Pest Control.
               </marquee>
         </div>  
 </body>

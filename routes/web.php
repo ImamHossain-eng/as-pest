@@ -18,9 +18,10 @@ use App\Http\Controllers\UserController;
 
 // Route::get('/visitor', [PagesController::class, 'visitor_count']);
 
-Route::get('/test', function(){
-    return view('parts.brand2');
-});
+// Route::get('/test', function(){
+//     // return view('parts.brand2');
+//     return 123;
+// });
 
 Route::get('/', [PagesController::class, 'index'])->name('homepage');
 
