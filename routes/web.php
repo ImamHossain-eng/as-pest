@@ -5,6 +5,7 @@ use App\Http\Controllers\BackController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\UserController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,6 +23,8 @@ use App\Http\Controllers\UserController;
 //     // return view('parts.brand2');
 //     return 123;
 // });
+
+
 
 Route::get('/', [PagesController::class, 'index'])->name('homepage');
 
@@ -59,6 +62,11 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/role', [BackController::class, 'role_index'])->name('admin.role_index');
     Route::get('/role/create', [BackController::class, 'role_create'])->name('admin.role_create');
     Route::post('/role', [BackController::class, 'role_store'])->name('admin.role_store');
+    Route::get('/role/{id}/edit', [BackController::class, 'role_edit'])->name('admin.role_edit');
+    Route::put('/role/{id}', [BackController::class, 'role_update'])->name('admin.role_update');
+
+    //User CRUD
+    Route::get('/user', [BackController::class, 'user_index'])->name('admin.user_index');
 
     //FAQ CRUD
     Route::get('/faq/create', [BackController::class, 'faq_create'])->name('admin.faq_create');
@@ -119,3 +127,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     
 
 });
+
+Route::view('/developer/imam', 'developer');

@@ -25,9 +25,13 @@
                             <td> {{$key+1}} </td>
                             <td> {{$role->id}} </td>
                             <td> {{$role->name}} </td>
-                            <td> 0 </td>
-                            <td>{{$role->created_at}}</td>
-                            <td>Option</td>
+                            <td> {{$role->users->count()}} </td>
+                            <td>{{date('F d, Y', strtotime($role->created_at))}} at {{date('g:ia', strtotime($role->created_at))}} </td>
+                            <td>
+                                <a href="/admin/role/{{$role->id}}/edit" title="Edit this role" class="btn btn-success">
+                                    <i class="fa fa-check"></i>
+                                </a>
+                            </td>
                         </tr>
                     @empty 
                         <tr class="text-center table-warning">

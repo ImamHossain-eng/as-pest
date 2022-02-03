@@ -6,6 +6,9 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 use App\Models\Testimonial;
 use App\Models\User_info;
 
@@ -35,6 +38,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $dates = ['deleted_at', 'created_at', 'updated_at'];
+
     /**
      * The attributes that should be cast to native types.
      *
@@ -48,5 +53,9 @@ class User extends Authenticatable
     }
     public function info(){
         return $this->hasOne(User_info::class);
+    }
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
     }
 }

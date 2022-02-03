@@ -9,12 +9,14 @@ use App\Models\User;
 class User_info extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'profession',
         'image',
         'address',
         'number'
     ];
+    
     public function user(){
         $this->belongTo(User::class);
     }

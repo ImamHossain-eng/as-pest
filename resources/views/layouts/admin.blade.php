@@ -80,6 +80,21 @@ font-size: 16px;"> First Login :
                     </li>
 
                     <li>
+                        <a href="#" class="{{ Request::is('admin/user*') ? 'active-menu' : '' }}">
+                            <i class="fa  fa-key fa-3x"></i> 
+                            Users <span class="fa arrow"></span>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/user/create"><i class="fa fa-plus-square"></i>Add New User</a>
+                                </li>
+                                <li>
+                                    <a href="/admin/user"><i class="fa fa-pencil"></i>Manage Users</a>
+                                </li>
+                            </ul>
+                        </a>
+                    </li>
+
+                    <li>
                         <a href="#" class="{{ Request::is('admin/faq*') ? 'active-menu' : '' }}">
                             <i class="fa  fa-question-circle-o fa-3x"></i> 
                             FAQ <span class="fa arrow"></span>

@@ -16,6 +16,7 @@ use App\Models\Slider;
 use App\Models\Contact;
 use App\Models\Role;
 use App\Models\Visitor;
+use App\Models\User;
 
 class BackController extends Controller
 {
@@ -41,6 +42,25 @@ class BackController extends Controller
         $role->save();
         return redirect()->route('admin.role_index')->with('success', 'Successfully Created');
     }
+    public function role_edit($id){
+        $role = Role::find($id);
+        return view('admin.role.edit', compact('role'));
+    }
+    public function role_update(Request $request, $id){
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+        $role = Role::find($id);
+        $role->name = $request->input('name');
+        $role->status = true;
+        $role->save();
+        return redirect()->route('admin.role_index')->with('warning', 'Successfully Updated');
+    }
+    //User CRUD
+    public function user_index(){
+        $users = User::latest()->paginate(10);
+        return view('admin.user.index', compact('users'));
+    }
     public function faq_create(){
         return view('admin.faq.create');
     }
@@ -60,8 +80,7 @@ class BackController extends Controller
             return redirect()->route('admin.faq_index')->with('success', 'Successfully Inserted');
         }else{
             return redirect()->route('admin.faq_create')->with('error', 'Please Select left or right side');
-        }
-        
+        }  
     }
     public function faq_destroy($id){
         Faq::find($id)->delete();
