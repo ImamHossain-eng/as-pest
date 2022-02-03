@@ -4,9 +4,9 @@
             <div class="col-lg-4 col-md-12">
                 <div class="logo">
                     <a href="/">
-                        <h1>A.S Pest Control</h1>
-                        <!--php <img src="img/logo.jpg" alt="Logo"> -->
-                    </a>
+                        <img src="{{asset('/images/AS_Logo.png')}}" style="margin-top: -1em;" alt="Logo">
+                       <h2 style="display: inline;margin-top:2em;color:#030F27;">A.S Pest Control</h2>
+                  </a>
                 </div>
             </div>
             <div class="col-lg-8 col-md-7 d-none d-lg-block">

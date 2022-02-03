@@ -7,7 +7,7 @@
     <title>Admin Dashboard</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-   
+    <link href="{{asset('images/AS_Logo.png')}}" rel="icon">
     <!-- BOOTSTRAP STYLES-->
     <link href="{{asset('/css/admin/bootstrap.css')}}" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->

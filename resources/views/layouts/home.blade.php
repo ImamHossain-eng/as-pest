@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="description" content="AS Pest Control Bangladesh is one of the Front Liner Pest Control. A S PestControl Best Better Pest Control BD bd Bangladesh. pest control dhaka low budget pest control in dhaka">
     <!-- Favicon -->
-    <link href="img/favicon.ico" rel="icon">
+    <link href="{{asset('images/AS_Logo.png')}}" rel="icon">
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">

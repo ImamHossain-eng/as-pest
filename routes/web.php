@@ -112,5 +112,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
 
     Route::get('/visitor', [BackController::class, 'visitor_count'])->name('admin.visitor_count');
     Route::delete('/visitor/{id}', [BackController::class, 'visitor_destroy'])->name('admin.visitor_destroy');
+    Route::get('/visitor/today', [BackController::class, 'visitor_today'])->name('admin.visitor_today');
+    Route::get('/visitor/trash', [BackController::class, 'visitor_trash'])->name('admin.visitor_trash');
+    Route::get('/visitor/{id}/restore', [BackController::class, 'visitor_restore'])->name('admin.visitor_restore');
+    Route::get('/visitor/{id}', [BackController::class, 'visitor_show'])->name('admin.visitor_show');
+    
 
 });

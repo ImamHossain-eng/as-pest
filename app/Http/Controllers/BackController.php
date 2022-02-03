@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use Image;
 use File;
+use Carbon\Carbon;
 
 use App\Models\Faq;
 use App\Models\Member;
@@ -443,6 +444,24 @@ class BackController extends Controller
     public function visitor_destroy($id){
         Visitor::find($id)->delete();
         return redirect()->route('admin.visitor_count')->with('error', 'Removed one record.');
+    }
+    public function visitor_today(){
+        $visitors = Visitor::latest()
+            ->where('created_at', '>=', Carbon::today()
+            ->toDateString())->paginate(10);
+        return view('admin.visitor.index', compact('visitors'));
+    }
+    public function visitor_trash(){
+        $visitors = Visitor::onlyTrashed()->latest()->paginate(10);
+        return view('admin.visitor.index', compact('visitors'));
+    }
+    public function visitor_restore($id){
+        Visitor::withTrashed()->find($id)->restore();
+        return redirect()->route('admin.visitor_count')->with('success', 'One visitor restored successfully.');
+    }
+    public function visitor_show($id){
+        $visitor = Visitor::find($id);
+        return view('admin.visitor.show', compact('visitor'));
     }
 
 }

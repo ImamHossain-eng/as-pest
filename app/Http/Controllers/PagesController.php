@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 use App\Models\Faq;
 use App\Models\Member;
@@ -38,20 +39,39 @@ class PagesController extends Controller
     // }
     public function index() {
         //Get unique visitor IP
+        // get the client ip
         $ip = request()->ip();
-        $visitor_db = Visitor::latest()->where('ip', $ip)->first();
-        if($visitor_db){
-            $diff = Carbon::parse($visitor_db->created_at)->diffInHours();
-            if($diff > 23){
-                $visitor = new Visitor;
-                $visitor->ip = $ip;
-                $visitor->save();
-            }     
-        }else{
-            $visitor = new Visitor;
-            $visitor->ip = $ip;
-            $visitor->save();
+ 
+         //fetch information from ip-api
+        $result = Http::get('http://ip-api.com/json/'.$ip);
+ 
+         //convert the result from string to JSON
+        $visit = json_decode($result, true);
+ 
+         //Check the status
+        if($visit['status'] != "fail"){
+ 
+             //Check for unique visitor
+             $visitor_DB = Visitor::latest()->where('ip', $ip)->first();
+ 
+             //check for exists or if visitor visited minimum 1 day ago
+             if(!$visitor_DB || $visitor_DB->created_at->diffInHours() > 23){                
+ 
+                 //Initiate the visitor and save to db
+                 $visitor = new Visitor;
+                 $visitor->ip = $ip;
+                 $visitor->country = $visit['country'];
+                 $visitor->region_name = $visit['regionName'];
+                 $visitor->city = $visit['city'];
+                 $visitor->zip = $visit['zip'];
+                 $visitor->lat = $visit['lat'];
+                 $visitor->lon = $visit['lon'];
+                 $visitor->timezone = $visit['timezone'];
+                 $visitor->isp = $visit['isp'];
+                 $visitor->save();            
+            }  
         }
+        
 
         //Fetch Data from db
         $faq_lefts = Faq::orderBy('created_at', 'desc')->where('side', 1)->take(5)->get();
