@@ -3,7 +3,7 @@
 <body>
     <div class="card">
         <div class="card-header">
-            <h3 class="title">All Users</h3>
+            <h3 class="title">All Removed Users</h3>
         </div>
         <div class="card-body">
             <table class="table table-border table-hover">
@@ -13,7 +13,7 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Role</th>
-                        <th>Created at</th>
+                        <th>Deleted at</th>
                         <th>Option</th>
                     </tr>
                 </thead>
@@ -24,16 +24,11 @@
                             <td> {{$user->name}} </td>
                             <td> {{$user->email}} </td>
                             <td> @if($user->role_id != null) {{$user->role->name}} @else Unknown @endif</td>
-                            <td> {{$user->created_at->diffForHumans()}} </td>
+                            <td> {{$user->deleted_at->diffForHumans()}} </td>
                             <td>
-                                <a href="/admin/user/{{$user->id}}/edit" class="btn btn-success" title="Edit this user">
-                                    <i class="fa fa-check"></i>
+                                <a href="/admin/user/{{$user->id}}/restore" class="btn btn-warning" title="Restore this user">
+                                    <i class="fa fa-recycle"></i>
                                 </a>
-                                {{Form::open(['route'=>['admin.user_destroy', $user->id], 'method'=>'DELETE', 'style'=>'display:inline'])}}
-                                    <button type="submit" class="btn btn-danger" title="Removed this user">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
-                                {{Form::close()}}
                             </td>
                         </tr>
                     @empty 

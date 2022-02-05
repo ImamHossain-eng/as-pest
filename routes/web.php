@@ -67,6 +67,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
 
     //User CRUD
     Route::get('/user', [BackController::class, 'user_index'])->name('admin.user_index');
+    Route::get('/user/create', [BackController::class, 'user_create'])->name('admin.user_create');
+    Route::post('/user', [BackController::class, 'user_store'])->name('admin.user_store');
+    Route::get('/user/{id}/edit', [BackController::class, 'user_edit'])->name('admin.user_edit');
+    Route::patch('/user/{id}', [BackController::class, 'user_update'])->name('admin.user_update');
+    Route::delete('/user/{id}', [BackController::class, 'user_destroy'])->name('admin.user_destroy');
+    Route::get('/user/trash', [BackController::class, 'user_trash'])->name('admin.user_trash');
 
     //FAQ CRUD
     Route::get('/faq/create', [BackController::class, 'faq_create'])->name('admin.faq_create');

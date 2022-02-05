@@ -90,6 +90,9 @@ font-size: 16px;"> First Login :
                                 <li>
                                     <a href="/admin/user"><i class="fa fa-pencil"></i>Manage Users</a>
                                 </li>
+                                <li>
+                                    <a href="/admin/user/trash"><i class="fa fa-trash"></i>Removed Users</a>
+                                </li>
                             </ul>
                         </a>
                     </li>

@@ -61,6 +61,66 @@ class BackController extends Controller
         $users = User::latest()->paginate(10);
         return view('admin.user.index', compact('users'));
     }
+    public function user_create(){
+        $roles = Role::all();
+        return view('admin.user.create', compact('roles'));
+    }
+    public function user_store(Request $request){
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:191'],
+            'email' => ['required', 'string', 'email', 'max:191', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+        //check for role
+        if($request->input('role_id') != 'null'){
+            $user = new User;
+            $user->name = $request->input('name');
+            $user->email = $request->input('email');
+            $user->password = bcrypt($request->input('password'));
+            $user->role_id = $request->input('role_id');
+            $user->save();
+            return redirect()->route('admin.user_index')->with('success', 'Successfully created new user.');
+        }else{
+            return back()->withInput()->with('error', 'Please select user role');
+        } 
+    }
+    public function user_edit($id){
+        $user = User::find($id);
+        $roles = Role::all();
+        return view('admin.user.edit', compact('user', 'roles'));
+    }
+    public function user_update(Request $request, $id){
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:191'],
+            'email' => ['required', 'string', 'email', 'max:191']
+        ]);
+        // return $request;
+        $user = User::find($id);
+        $userPass = $user->password;
+        $newPass = $request->input('password');
+
+        if($newPass != null){
+            $pass = bcrypt($newPass);
+        }else{
+            $pass = $userPass;
+        }
+
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->password = $pass;
+        $user->role_id = $request->input('role_id');
+
+        $user->save();
+        return redirect()->route('admin.user_index')->with('warning', 'Successfully updated a user.');
+    }
+    public function user_destroy($id){
+        User::find($id)->delete();
+        return redirect()->route('admin.user_index')->with('error', 'Successfully removed a user.');
+    }
+    public function user_trash(){
+        $users = User::where('deleted_at', '!=', null)->paginate(10);
+        return view('admin.user.trash', compact('users'));
+    }
     public function faq_create(){
         return view('admin.faq.create');
     }

@@ -17,7 +17,7 @@ class User
     public function handle(Request $request, Closure $next)
     {
         if(Auth::check()){
-            if(Auth::user()->is_admin == 1){
+            if(Auth::user()->role_id == 1){
                 return redirect()->route('admin.home')->with('error', 'You do not have User access');
                 
             }else{
