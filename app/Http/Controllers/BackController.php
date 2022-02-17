@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use LaravelDaily\LaravelCharts\Classes\LaravelChart;
 use Auth;
 use Image;
 use File;
+use DB;
 use Carbon\Carbon;
 
 use App\Models\Faq;
@@ -541,6 +543,71 @@ class BackController extends Controller
     public function visitor_show($id){
         $visitor = Visitor::find($id);
         return view('admin.visitor.show', compact('visitor'));
+    }
+    public function chart_visitors($chart_name){
+        if($chart_name == 'line'){
+            $chart_options = [
+                'chart_title' => 'Visitors by Day',
+                'report_type' => 'group_by_date',
+                'model' => 'App\Models\Visitor',
+                'group_by_field' => 'created_at',
+                'group_by_period' => 'day',
+                'chart_type' => 'line',
+                'filter_period' => 'year',
+            ];
+        }elseif($chart_name == 'pie'){
+            $chart_options = [
+                'chart_title' => 'Visitors by Country',
+                'report_type' => 'group_by_string',
+                'model' => 'App\Models\Visitor',
+                'group_by_field' => 'country',
+                'chart_type' => 'pie',
+                'filter_field' => 'created_at',
+                'filter_period' => 'year', // show Visitors only visited this year
+            ];
+        }elseif($chart_name == 'bar'){
+            $chart_options = [
+                'chart_title' => 'Visitors by Month',
+                'report_type' => 'group_by_date',
+                'model' => 'App\Models\Visitor',
+                'group_by_field' => 'created_at',
+                'group_by_period' => 'month',
+                'chart_type' => 'bar',            
+            ];
+        }else{
+            $chart_option = [
+                'chart_title' => 'Unknown',
+            ];
+        }
+
+        $chart = new LaravelChart($chart_options);
+        
+        return view('admin.visitor.charts', compact('chart'));
+    }
+    //Chart with Chart JS
+    public function overview_chart($type, $day){
+        //fetch from db
+        $visitors = Visitor::select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as total'))
+        ->groupBy('date')
+        ->orderBy('date', 'desc')
+        ->take($day)
+        ->get();
+
+        //declare state
+        $date = [];
+        $total = [];
+        $type = $type;
+
+        //assigning db data to our state
+        foreach($visitors as $visitor){
+            $date[] = $visitor['date'];
+            $total[] = $visitor['total'];
+        }
+        
+        return view('admin.chart.chart')
+        ->with('type', json_encode($type))
+        ->with('date', json_encode($date))
+        ->with('total', json_encode($total));
     }
 
 }

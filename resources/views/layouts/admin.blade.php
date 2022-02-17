@@ -16,6 +16,7 @@
     <link href="{{asset('/css/morris/morris-0.4.3.min.css')}}" rel="stylesheet" />
         <!-- CUSTOM STYLES-->
     <link href="{{asset('/css/admin/custom.css')}}" rel="stylesheet" />
+    
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
    <link rel="stylesheet" href="{{asset('css/admin/style.css')}}">
@@ -188,7 +189,51 @@ font-size: 16px;"> First Login :
                             <span style="float:right;color:#FDBE33;font-weight:bold">
                                  {{Visitor::where('created_at', '>=', Carbon\Carbon::today()->toDateString())->count()}} 
                                  / {{Visitor::count()}}
-                                </span>
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="{{ Request::is('admin/chart*') ? 'active-menu' : '' }}">
+                            <i class="fa fa-area-chart" aria-hidden="true"></i>
+                            Visitors Chart <span class="fa arrow"></span>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/chart/line">
+                                        <i class="fa fa-line-chart"></i> Visitors by Day
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/admin/chart/pie">
+                                        <i class="fa fa-pie-chart"></i>Visitors by Country
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/admin/chart/bar">
+                                        <i class="fa fa-bar-chart"></i>Visitors by Month
+                                    </a>
+                                </li>
+                            </ul>
+                        </a>
+                    </li>
+
+
+                    <li>
+                        <a href="#" class="{{ Request::is('admin/overview*') ? 'active-menu' : '' }}">
+                            <i class="fa fa-area-chart" aria-hidden="true"></i>
+                            Visitors Chart <span class="fa arrow"></span>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="/admin/overview/line/7">
+                                        <i class="fa fa-line-chart"></i> Visitors Last Week
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/admin/overview/bar/30">
+                                        <i class="fa fa-bar-chart"></i> Visitors Last Month
+                                    </a>
+                                </li>
+                            </ul>
                         </a>
                     </li>
                     
@@ -250,6 +295,7 @@ font-size: 16px;"> First Login :
     <script src="{{asset('/js/admin/morris/morris.js')}}"></script>
       <!-- CUSTOM SCRIPTS -->
     <script src="{{asset('/js/admin/custom.js')}}"></script>
+    
 
     <script src="{{asset('ckeditor/ckeditor.js')}}"></script>
     <script>
@@ -258,6 +304,7 @@ font-size: 16px;"> First Login :
                 language:'en-gb'
             });
     </script>
+    @yield('javascript')
     
 </body>
 </html>

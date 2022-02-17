@@ -130,6 +130,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/visitor/trash', [BackController::class, 'visitor_trash'])->name('admin.visitor_trash');
     Route::get('/visitor/{id}/restore', [BackController::class, 'visitor_restore'])->name('admin.visitor_restore');
     Route::get('/visitor/{id}', [BackController::class, 'visitor_show'])->name('admin.visitor_show');
+
+    //Chart with Laravel Chart Package
+    // Route::get('/chart/{chart_name}', [BackController::class, 'chart_visitors'])->name('admin.chart_visitors')->where('chart_name', 'line|pie|bar');
+
+    //Chart with Chart JS Library
+    Route::get('/overview/{type}/{day}', [BackController::class, 'overview_chart'])
+        ->name('admin.overview_chart')->where('type', 'line|bar')->where('day', '[0-9]+');
     
 
 });
