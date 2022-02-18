@@ -585,29 +585,57 @@ class BackController extends Controller
         return view('admin.visitor.charts', compact('chart'));
     }
     //Chart with Chart JS
-    public function overview_chart($type, $day){
-        //fetch from db
-        $visitors = Visitor::select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as total'))
-        ->groupBy('date')
-        ->orderBy('date', 'desc')
-        ->take($day)
-        ->get();
+    public function overview_chart($type){
 
         //declare state
         $date = [];
         $total = [];
         $type = $type;
 
-        //assigning db data to our state
-        foreach($visitors as $visitor){
-            $date[] = $visitor['date'];
-            $total[] = $visitor['total'];
+        if($type == 'pie'){
+            $visitors = Visitor::select(DB::raw('country as country'), DB::raw('count(*) as total'))
+            ->groupBy('country')->get();
+            //Assign value to our state
+            foreach($visitors as $visitor){
+                $date[] = $visitor['country'];
+                $total[] = $visitor['total'];
+            }
+        }else{
+            $visitors = Visitor::select(DB::raw('DATE(created_at) as date'), DB::raw('count(*) as total'))
+            ->groupBy('date')
+            ->orderBy('date', 'desc')
+            ->take(30)
+            ->get();
+            //assigning db data to our state
+            foreach($visitors as $visitor){
+                $date[] = $visitor['date'];
+                $total[] = $visitor['total'];
+            }
         }
+
+        
         
         return view('admin.chart.chart')
         ->with('type', json_encode($type))
         ->with('date', json_encode($date))
         ->with('total', json_encode($total));
+
     }
+    // public function pie_chart(){
+    //     $visitors = Visitor::select(DB::raw('country as country'), DB::raw('count(*) as total'))
+    //     ->groupBy('country')->get();
+        
+    //     $country = [];
+    //     $total = [];
+
+    //     foreach($visitors as $visitor){
+    //         $country[] = $visitor['country'];
+    //         $total[] = $visitor['total'];
+    //     }
+
+    //     return view('admin.chart.pie')
+    //     ->with('country', json_encode($country))
+    //     ->with('total', json_encode($total));
+    // }
 
 }

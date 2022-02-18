@@ -224,13 +224,18 @@ font-size: 16px;"> First Login :
                             Visitors Chart <span class="fa arrow"></span>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/admin/overview/line/7">
-                                        <i class="fa fa-line-chart"></i> Visitors Last Week
+                                    <a href="/admin/overview/line">
+                                        <i class="fa fa-line-chart"></i> Line Chart
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="/admin/overview/bar/30">
-                                        <i class="fa fa-bar-chart"></i> Visitors Last Month
+                                    <a href="/admin/overview/bar">
+                                        <i class="fa fa-bar-chart"></i> Bar Chart
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/admin/overview/pie">
+                                        <i class="fa fa-pie-chart"></i> Pie Chart
                                     </a>
                                 </li>
                             </ul>

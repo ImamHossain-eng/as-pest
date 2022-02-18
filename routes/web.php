@@ -135,8 +135,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     // Route::get('/chart/{chart_name}', [BackController::class, 'chart_visitors'])->name('admin.chart_visitors')->where('chart_name', 'line|pie|bar');
 
     //Chart with Chart JS Library
-    Route::get('/overview/{type}/{day}', [BackController::class, 'overview_chart'])
-        ->name('admin.overview_chart')->where('type', 'line|bar')->where('day', '[0-9]+');
+    Route::get('/overview/{type}', [BackController::class, 'overview_chart'])
+        ->name('admin.overview_chart')->where('type', 'line|bar|pie')->where('day', '[0-9]+');
+    // Route::get('/overview/pie', [BackController::class, 'pie_chart'])->name('admin.pie_chart');
     
 
 });
